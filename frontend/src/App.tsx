@@ -1,33 +1,56 @@
-import React from 'react';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import HomePage from './pages/HomePage';
+import TimelinePage from './pages/TimelinePage';
+import ThemesPage from './pages/ThemesPage';
+import ThemeDetailPage from './pages/ThemeDetailPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          摄影师作品集
-        </h1>
-        <p className="text-xl text-gray-600">
-          网站正在开发中...
-        </p>
-        <div className="mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="font-semibold mb-2">精选作品</h3>
-              <p className="text-gray-600">展示最佳摄影作品</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="font-semibold mb-2">主题集</h3>
-              <p className="text-gray-600">按主题分类浏览</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="font-semibold mb-2">时光轴</h3>
-              <p className="text-gray-600">摄影历程回顾</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        {/* 前台路由 */}
+        <Route path="/" element={
+          <Layout>
+            <HomePage />
+          </Layout>
+        } />
+        <Route path="/timeline" element={
+          <Layout>
+            <TimelinePage />
+          </Layout>
+        } />
+        <Route path="/themes" element={
+          <Layout>
+            <ThemesPage />
+          </Layout>
+        } />
+        <Route path="/themes/:id" element={
+          <Layout>
+            <ThemeDetailPage />
+          </Layout>
+        } />
+        <Route path="/about" element={
+          <Layout>
+            <AboutPage />
+          </Layout>
+        } />
+        <Route path="/contact" element={
+          <Layout>
+            <ContactPage />
+          </Layout>
+        } />
+        
+        {/* 管理员路由 */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
